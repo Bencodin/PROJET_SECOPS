@@ -29,20 +29,12 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
       - name: Run OWASP Dependency-Check
         uses: dependency-check/Dependency-Check_Action@main
         with:
           project: "Vulnerable-App"
           format: "HTML"
           output: "reports"
-
-      - name: Upload Dependency-Check Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: dependency-check-report
-          path: reports
-
   dast_scan:
     name: Dynamic Analysis with OWASP ZAP
     runs-on: ubuntu-latest
@@ -62,9 +54,3 @@ jobs:
           fail_action: false  # Empêche l'échec en cas d'erreurs mineures
           rules_file_name: ".zap/rules.tsv"
         continue-on-error: true  # Évite que l'exécution ne bloque sur ZAP
-
-      - name: Upload ZAP Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: zap-report
-          path: report.html
