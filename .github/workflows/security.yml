@@ -34,4 +34,4 @@ jobs:
         with:
           project: "Vulnerable-App"
           format: "HTML"
-          output: "reports"
+          out: "reports"
